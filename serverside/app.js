@@ -45,5 +45,17 @@ app.get('/event', (req, res, next) => {
     });
  });
 
+ app.get('/event/:location', (req, res, next) => {
+   //call mongoose method find (MongoDB db.Events.find())
+   Event.find({'location':req.params.location})
+     //if data is returned, send data as a response
+     .then(data => res.status(200).json(data))
+     //if error, send internal server error
+     .catch(err => {
+     console.log('Error: ${err}');
+     res.status(500).json(err);
+    });
+ });
+
 //to use this middleware in other parts of the application
 module.exports=app;
