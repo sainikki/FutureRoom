@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DetailsService } from './schedule/DetailsService';  
+import { DetailsService } from 'src/app/kiosk/displayer/DetailsService';  
+
 
 @Component({
   selector: 'app-kiosk',
