@@ -1,0 +1,105 @@
+<style>
+  input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 5px;
+    font-style: bold;
+    font-size: 35px;
+  }
+
+  .p{
+    align-content: center;
+  }
+  </style>
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
+    <div>
+        <!-- <br> -->
+        <img src="\assets\shaws.gif" style="width:320px;height:93px;">
+    </div>
+
+<div align="center"  >
+<!-- <h1 >{{Details && Details[0]?.location}}</h1> -->
+
+<!-- <div>
+<label>RoomNo: </label>
+<select [(ngModel)]="roomSelected" >
+<option *ngFor="let x of Details let i = index "  [value]=i>  
+
+{{x.location}}
+</option> 
+
+</select>   
+<br> 
+{{indexTracker(roomSelected,x)}} -->
+
+ <!-- <div ng-if="roomSelected">
+<h3>{{roomSelected }}</h3>
+
+</div>
+</div>
+<h3>({{roomSelected}})</h3> 
+
+</div> --> 
+ 
+
+<div class="container">
+  <div class="floatLeft">
+    <app-schedule></app-schedule>
+
+  </div>
+  
+
+  <div class="floatRight">
+    <br><br><br><br>
+<circle-progress
+
+[percent]="100"
+[radius]="180"
+[outerStrokeWidth]="50"
+[innerStrokeWidth]="30"
+[outerStrokeColor]="'#78C000'"
+[innerStrokeColor]="'#C7E596'"
+[animation]="true"
+[animationDuration]=runtime
+[unitsFontSize]="60"
+[titleFontSize]="80"
+[subtitleFontSize]="60"
+
+></circle-progress>
+  </div>
+  </div>
+
+<div align="center" ><app-progress></app-progress></div>
+
+<!-- <my-processing inputDate="January 1, 2018 12:00:00">Loading...</app-processing> -->
+
+
+<!-- <label *ngFor="let value of Details; trackBy:indexTracker">
+  {{value.location}}
+  <input type="number" min="0" max="999" step="1" [(ngModel)]="value">
+</label>
+
+</body> -->
+
+
+
+<!-- <select [ngModel]="selectedObject | json" (ngModelChange)="updateSelectedValue(o)">
+  <option *ngFor="o of Details" [value]="o | json" >{{o.location}}</option>
+</select> -->
+
+

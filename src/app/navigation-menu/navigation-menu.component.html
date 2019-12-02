@@ -1,0 +1,32 @@
+<div>
+
+
+  <mat-toolbar class="navlinks">
+    <mat-toolbar-row>
+
+      <span [matMenuTriggerFor]="kioskmenu">
+        <mat-icon matListIcon>menu</mat-icon> Menu
+      </span>
+      <mat-menu #kioskmenu="matMenu" class="kiosk-menu">
+        <button mat-menu-item routerLink="/kiosk" routerLinkActive="active">Kiosk</button>
+
+        <!-- </mat-menu>
+      <span [matMenuTriggerFor]="votemenu">
+        <mat-icon matListIcon>notifications</mat-icon> Notifications
+      </span>
+      <mat-menu #votemenu="matMenu" class="vote-menu"> -->
+        <button mat-menu-item routerLink="/notification" routerLinkActive="active">Notification</button>
+
+        <!-- </mat-menu> -->
+        <!-- <span [matMenuTriggerFor]="confmenu">
+        <mat-icon matListIcon>group</mat-icon> Room Recommender
+      </span>
+      <mat-menu #confmenu="matMenu" class="conf-menu"> -->
+        <button mat-menu-item routerLink="/confroom" routerLinkActive="active">Room Recommender</button>
+
+      </mat-menu>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+</div>

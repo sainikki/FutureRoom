@@ -1,0 +1,81 @@
+
+
+<body >
+<div>
+  <h3>RoomNo: </h3>
+  <select   [(ngModel)]="roomSelected" >
+  <option *ngFor="let x of Details let i = index"  [value]=i >
+     
+  <h1>{{x}}</h1>
+
+  </option> 
+  </select>   
+  <br> 
+  </div>
+  <!-- <p *ngIf="Details[roomSelected]==x">  </p> -->
+
+  <th>{{Details && Details[roomSelected]?.location}}</th>
+    <label>
+      <h5>Meeting Details: </h5>
+      <h4>Current Meeting Topic: {{Details && Details[roomSelected]?.summary}}</h4>         
+  <h4>Current Meeting Time: {{Details && Details[roomSelected]?.start_date}}</h4>        
+  <h4>Start time: {{Details && Details[roomSelected]?.start_time}}</h4>
+  <h4>End time: {{Details && Details[roomSelected]?.end_time}}</h4>
+        </label>
+       
+    </body>
+
+
+    
+
+        <!-- <script>
+        
+        angular.module('ui.filters').filter('unique', function () {
+
+return function (items, filterOn) {
+
+  if (filterOn === false) {
+    return items;
+  }
+
+  if ((filterOn || angular.isUndefined(filterOn)) && angular.isArray(items)) {
+    var hashCheck = {}, newItems = [];
+
+    var extractValueToCompare = function (item) {
+      if (angular.isObject(item) && angular.isString(filterOn)) {
+        return item[filterOn];
+      } else {
+        return item;
+      }
+    };
+
+    angular.forEach(items, function (item) {
+      var valueToCheck, isDuplicate = false;
+
+      for (var i = 0; i < newItems.length; i++) {
+        if (angular.equals(extractValueToCompare(newItems[i]), extractValueToCompare(item))) {
+          isDuplicate = true;
+          break;
+        }
+      }
+      if (!isDuplicate) {
+        newItems.push(item);
+      }
+
+    });
+    items = newItems;
+  }
+  return items;
+};
+});
+
+        </script> -->
+
+            
+          <!-- <div>Upcoming Meeting Topic:</div>
+          
+          <h4>>>{{Details && Details[roomSelected]?.summary}}</h4> 
+    
+         <div>Upcoming Meeting Time: </div> 
+      
+         <h4>>>{{Details && Details[roomSelected]?.start_time}}-{{Details && Details[roomSelected]?.end_time}}</h4> -->

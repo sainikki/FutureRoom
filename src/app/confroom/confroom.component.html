@@ -1,0 +1,60 @@
+
+<body>
+  <p>Enter your meeting details:</p>
+  <br>
+  <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <mat-form-field>
+      <mat-label>Preferred Location</mat-label>
+      <select matNativeControl [(ngModel)]="location" name="location" required>
+        <option *ngFor="let location of events"> {{location}} </option>
+        <!-- <option value="Room A">Room A</option>
+        <option value="Room B">Room B</option>
+        <option value="Room C">Room C</option>
+        <option value="Room D">Room D</option> -->
+      </select>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="date" [ngModelOptions]="{standalone: true}" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <input mat-timepicker matInput type="time" placeholder="Start Time" [(ngModel)]="start_time" [ngModelOptions]="{standalone: true}" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <input mat-timepicker matInput type="time" placeholder="End Time" [(ngModel)]="end_time" [ngModelOptions]="{standalone: true}" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="In-Person Attendees #" [(ngModel)]="no_attendees" name="no_attendees" required>
+    </mat-form-field>
+    <br>
+    <button type="submit" mat-raised-button color="primary">Submit</button>
+  </form>
+  <br>
+  <mat-card>{{text}}</mat-card>
+  <br>
+  Recommended Rooms:
+  <br>
+  <br>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="room">
+      <th mat-header-cell *matHeaderCellDef> Location </th>
+      <td mat-cell *matCellDef="let element"> {{element.room}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="capacity">
+      <th mat-header-cell *matHeaderCellDef> Capacity </th>
+      <td mat-cell *matCellDef="let element"> {{element.capacity}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</body>

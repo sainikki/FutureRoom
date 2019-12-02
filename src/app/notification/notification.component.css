@@ -1,0 +1,10 @@
+.item1 { grid-area: header;
+    text-align: center;
+   background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* color: beige; */
+    float:center;
+  
+  }
+  
