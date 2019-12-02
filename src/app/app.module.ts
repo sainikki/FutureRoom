@@ -20,9 +20,9 @@ import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
 
-import { ScheduleComponent } from './kiosk/schedule/schedule.component';
+import { DisplayerComponent } from './kiosk/displayer/displayer.component';
 import { ProgressComponent } from './kiosk/progress/progress.component';
-import { DetailsService } from './kiosk/schedule/DetailsService';
+import { DetailsService } from './kiosk/displayer/DetailsService';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { GridModule } from '@syncfusion/ej2-angular-grids';
 
@@ -58,7 +58,7 @@ const appRoutes: Routes = [ {
     NotificationComponent,
     KioskComponent,
     ConfroomComponent,
-    ScheduleComponent,
+    DisplayerComponent,
     ProgressComponent,
    
 
