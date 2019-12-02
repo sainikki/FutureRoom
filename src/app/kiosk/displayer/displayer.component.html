@@ -1,0 +1,102 @@
+<!-- {{getTimeStamp(room.startdate)}}  -->
+  <div>
+    <label><h1><B>RoomNo: </B></h1></label>
+   
+ <select [(ngModel)]="Location" name="Room" required (change)="onSelect($event.target.value)">
+  <option [ngValue]="i" *ngFor="let location of Details " [value]=location ><h1> {{location}}</h1> </option>
+</select>
+</div>
+
+  <div>
+    <ul>
+      <ng-template ngFor let-room [ngForOf]="RoomDetails" let-i="index">
+       <br><br>
+      
+   
+        <li>
+        Title: {{room.summary}}<br>
+        Start Date: {{room.start_date}}<br>
+        Time: {{room.start_time}} to {{room.end_time}}  
+
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+
+
+
+
+
+
+   <!-- <select [(ngModel)]="roomSelected" >
+          <option *ngFor="let x of Details"  [value]="x.start_time">  
+         
+       {{x.location}}
+      </option> 
+  
+    </select>   
+    <br> <br><br><br>
+
+ {{roomSelected }} -->
+
+<!--   
+<div> 
+    <ul>
+      <ng-template ngFor let-student [ngForOf]="students" let-i="index">
+        <li>{{student.firstName}} {{student.lastName}} {{student.email}}</li> 
+      </ng-template>
+     </ul> 
+  </div> -->
+<!--  
+  <div *ngFor="let item of Details ">
+     {{item.location}} {{item.start_time}}
+  </div> -->
+
+
+  <!-- <div>
+    <label>RoomNo: </label>
+    <select [(ngModel)]="roomSelected">
+      <option value="RoomA">--All--</option>
+
+          <option *ngFor="let x of Details" [value]="x.location"> 
+       
+          
+       {{x.location}}
+
+      </option> 
+
+
+    </select>   
+    <br> <br><br><br>
+
+    {{roomSelected}}
+  </div> -->
+
+
+
+<!--   
+  <br><br><br><br><br>
+  <div *ngIf="roomSelected">
+    <h2>{{selectedRoom.location | uppercase}} </h2>
+    <div><span>Summary: </span>{{selectedRoom.summary}}</div>
+    <div><span>Start-Time: </span>{{selectedRoom.start_time}}</div>
+    <div><span>end_time: </span>{{selectedRoom.end_time}}</div>
+    <div><span>Start-Date: </span>{{selectedRoom.start_date}}</div>
+  </div> -->
+<!-- 
+  <select [(ngModel)]="room">
+    <ng-container *ngFor="let option of Details">
+      <option *ngIf="!option.isDivider" [ngValue]="option">{{option.summary}}</option>
+      <option *ngIf="option.isDivider" disabled>{{option.location}}</option>
+  
+    </ng-container>
+  </select> -->
+
+<!-- 
+  <ul class="Deta">
+         <li *ngFor="let D of Details"
+      [class.selected]="D === selectedRoom"
+      (click)="onSelect(D)">
+      <span class="badge">{{D.location}}</span>
+    </li>
+  </ul> -->
