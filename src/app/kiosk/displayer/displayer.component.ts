@@ -20,7 +20,7 @@ export class DisplayerComponent implements OnInit {
   title:string;
   // roomSelected: any[];
   // selectedtime: any;
-public runtime=0;
+
   public now: Date = new Date();
   public TodayTime = this.now.getTime();
   public startdates = []
@@ -35,6 +35,20 @@ public runtime=0;
   constructor(private _myService: DetailsService) {
     // this.SelectedLocations();
   }
+
+  runtime: number = 0;
+  interval;
+
+startTimer() {
+    this.interval = setInterval(() => {
+      if(this.runtime > 0) {
+        this.runtime--;
+      } else {
+        this.runtime = 60;
+      }
+    },1000)
+  }
+
   onSubmit() {
     setInterval(() => {
       this.now = new Date();
@@ -77,7 +91,8 @@ public runtime=0;
       //read data and assign to public variable students
       data => {
       this.RoomDetails = this.getRecentData(data);
-      this.Displayer(data);
+      // this.Displayer(data);
+
       console.log(this.runtime);
       },
       err => console.error(err),
@@ -90,7 +105,7 @@ public runtime=0;
     for (var i in details) {
       var Today = new Date();
       var TodayTime = Today.getTime();
-      var x = details[i].enddate;
+      var x = details[i].startdate;
       var Meetingstart = new Date(x).getTime();
       if (TodayTime < Meetingstart) {
         recentData.push(details[i]);
@@ -98,27 +113,26 @@ public runtime=0;
         recentData.sort((a, b) => (a.startdate > b.startdate) ? 1 : -1);
       }
     }
+
     return new Set(recentData);
   }
  
   Displayer(details)
   {
     
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 30000);
+//     // setTimeout(() => {
+//     //   window.location.reload();
+//     // }, 30000);
    for (var i in details)
    {
- if (this.now===details[i].starttime){
+ if (this.now==details[i].starttime){
   this.runtime=details[i].endtime-this.now.getTime();
     this.title=details[i].summary;
-  
+ this.startTimer(); 
    return this.runtime;
  }
   
    }
-  
- 
 
   }
 
