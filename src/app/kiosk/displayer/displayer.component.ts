@@ -90,7 +90,7 @@ public runtime=0;
     for (var i in details) {
       var Today = new Date();
       var TodayTime = Today.getTime();
-      var x = details[i].startdate;
+      var x = details[i].enddate;
       var Meetingstart = new Date(x).getTime();
       if (TodayTime < Meetingstart) {
         recentData.push(details[i]);
