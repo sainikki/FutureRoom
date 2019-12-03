@@ -81,11 +81,12 @@ public MeetingEndTime: Date;
       );
      }
 
+     
+
+
 getRecentData(details)
 {
   const recentData = []
-
- 
   for (var i in details){
             var Today = new Date();
         var TodayTime= Today.getTime();
@@ -94,9 +95,13 @@ getRecentData(details)
 if (TodayTime<Meetingstart)
 {
    recentData.push(details[i]);
-}
- 
+   
+   recentData.sort((a, b) => (a.startdate > b.startdate) ? 1 : -1)
+} 
   }
+
+
+
   return new Set(recentData)
 
 }
