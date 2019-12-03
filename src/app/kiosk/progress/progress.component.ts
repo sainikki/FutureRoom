@@ -17,7 +17,7 @@ export class ProgressComponent implements OnInit {
   enddate: Date;
   selectedRoom: Location;
   roomSelected: any;
-
+  public RoomDetails;
   public Details;
   public runtime = 10000;
   //initialize the call using StudentService 
