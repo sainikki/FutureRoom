@@ -17,7 +17,10 @@ li{
 
 }
 
-.Deta {
+.floatLeft { width: 30%; float: left; }
+.floatRight {width: 65%; float: right; }
+
+/* .Deta {
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
@@ -60,4 +63,4 @@ li{
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
   }
-  
+   */
