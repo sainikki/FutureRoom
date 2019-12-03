@@ -109,11 +109,13 @@ public runtime=0;
     // }, 30000);
    for (var i in details)
    {
- 
-    this.runtime=details[i].endtime-this.now.getTime();
+ if (this.now===details[i].starttime){
+  this.runtime=details[i].endtime-this.now.getTime();
     this.title=details[i].summary;
   
-   break;
+   return this.runtime;
+ }
+  
    }
   
  
