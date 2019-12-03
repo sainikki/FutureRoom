@@ -13,8 +13,8 @@ export class ProgressComponent implements OnInit {
   summary: string;
   start_time: String;
   end_time: String;
-  startdate: String;
-  enddate: string;
+  startdate: Date;
+  enddate: Date;
   selectedRoom: Location;
   roomSelected: any;
 
@@ -24,7 +24,7 @@ export class ProgressComponent implements OnInit {
   constructor(private _myService: DetailsService) { }
   ngOnInit() {
     this.getDetails();
-    this.getruntime();
+  
 
   }
   // subtitleFormat callback example
@@ -47,15 +47,39 @@ export class ProgressComponent implements OnInit {
       () => console.log('finished loading')
     );
   }
-
+  public Runtimes;
   getruntime() {
-    var Today = new Date();
-    var TodayTime = Today.getTime();
-    if (TodayTime == this.getTimeStamp(this.startdate)) {
-      this.runtime = this.getTimeStamp(this.enddate) - this.getTimeStamp(this.startdate);
-      return this.runtime;
-    }
-    return 0;
+    
+for (let i =0; i<this.Details;i++)
+{
+const sdate= new Date(this.Details[i].startdate);
+const edate= new Date(this.Details[i].enddate)
+var MeetingstartTime = sdate.getTime();
+var MeetingendTime = edate.getTime();
+var Today = new Date();
+var TodayTime= Today.getTime();
+
+//Testing - Replace MeetingEndTime with TestTime in the if condition and change the value of td2 to the test value 
+if (TodayTime === MeetingstartTime)
+{ 
+  
+  this.runtime=MeetingendTime-MeetingstartTime;
+  this.Runtimes.push(this.runtime);
+  console.log("Meeting End Time"+" "+MeetingstartTime);
+  console.log( "Today Time"+" "+TodayTime);
+  console.log("runtime"+this.runtime);
+}
+else{
+  this.runtime=0;
+}
+}
+    // var Today = new Date();
+    // var TodayTime = Today.getTime();
+    // if (TodayTime == this.getTimeStamp(this.startdate)) {
+    //   this.runtime = this.getTimeStamp(this.enddate) - this.getTimeStamp(this.startdate);
+    //   return this.runtime;
+    // }
+    // return 0;
 
   }
 
@@ -65,25 +89,3 @@ export class ProgressComponent implements OnInit {
 
 }
 
-// var filteredData = [];
-
-// for (let i = 0; i < length; i++) {
-// const sdate= new Date(data[i].startdate);
-// const edate= new Date(data[i].enddate)
-// var MeetingstartTime = sdate.getTime();
-// var MeetingendTime = edate.getTime();
-// var Today = new Date();
-// var TodayTime= Today.getTime();
-
-// //Testing - Replace MeetingEndTime with TestTime in the if condition and change the value of td2 to the test value 
-// if (TodayTime <= MeetingstartTime)
-// { 
-//   filteredData.push(data[i]);
-//   this.runtime=MeetingendTime-MeetingstartTime;
-//   console.log("Meeting End Time"+" "+MeetingstartTime);
-//   console.log( "Today Time"+" "+TodayTime);
-//   console.log("runtime"+this.runtime);
-// }
-// else{
-//   this.runtime=0;
-// }
