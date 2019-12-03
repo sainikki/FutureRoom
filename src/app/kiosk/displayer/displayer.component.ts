@@ -6,9 +6,6 @@ import { HttpClient } from '@angular/common/http';
 import {Pipe, PipeTransform} from '@angular/core';
 
 
-
-
-
 @Component({
   selector: 'app-displayer',
   templateUrl: './displayer.component.html',
@@ -76,14 +73,33 @@ public MeetingEndTime: Date;
       {
         this._myService.SelectedInfo(this.selectedRoom).subscribe(
         //read data and assign to public variable students
-        data => {console.log(data); this.RoomDetails = data;          
+        data => {console.log(data); this.RoomDetails =this.getRecentData(data);   
+                 
         },
         err => console.error(err),
         () => console.log('finished loading')
       );
      }
 
+getRecentData(details)
+{
+  const recentData = []
 
+ 
+  for (var i in details){
+            var Today = new Date();
+        var TodayTime= Today.getTime();
+      var x= details[i].startdate;
+    var Meetingstart =  new Date(x).getTime();
+if (TodayTime<Meetingstart)
+{
+   recentData.push(details[i]);
+}
+ 
+  }
+  return new Set(recentData)
+
+}
   //method called OnInit
   getDetails() {
    
