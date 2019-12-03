@@ -1,5 +1,8 @@
 <!-- {{getTimeStamp(room.startdate)}}  -->
-  <div>
+<div class="floatLeft">
+
+
+<div>
     <label><h1><B>RoomNo: </B></h1></label>
    
  <select [(ngModel)]="Location" name="Room" required (change)="onSelect($event.target.value)">
@@ -25,6 +28,39 @@
     </ul>
   </div>
 
+</div>
+
+
+
+  <div class="floatright">
+      <br><br><br><br><br><br>
+  
+         <br><br>   
+         <h2>{{title}} in progress:</h2> 
+       
+  
+    
+      <div>
+          <circle-progress
+          
+          [percent]="100"
+          [radius]="150"
+          [outerStrokeWidth]="50"
+          [innerStrokeWidth]="30"
+          [outerStrokeColor]="'#78C000'"
+          [innerStrokeColor]="'#C7E596'"
+          [animation]="true"
+          [animationDuration]=runtime
+          [unitsFontSize]="60"
+          [titleFontSize]="80"
+          [subtitleFontSize]="60"
+          
+          ></circle-progress>
+    
+      </div>
+      
+      
+  </div>
 
 
 
