@@ -47,13 +47,18 @@ public MeetingEndTime: Date;
 
   getUniqueValues(details){
     const locations = []
-    this.startdates=[]
+    // this.startdates=[]
    
     for (var i in details){
+      
          locations.push(details[i].location);
-        var x= details[i].startdate;
-      this.MeetingEndTime =  new Date(x);
-        this.startdates.push(this.MeetingEndTime.getTime());
+      //   var x= details[i].startdate;
+      // this.MeetingEndTime =  new Date(x);
+        // this.startdates.push(this.MeetingEndTime.getTime());
+       for (var j in locations){
+        locations.sort();
+
+       }
     }
     return new Set(locations)
   }
