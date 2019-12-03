@@ -9,16 +9,18 @@
 
   <div>
     <ul>
-      <ng-template ngFor let-room [ngForOf]="RoomDetails" let-i="index">
-       <br><br>
-      
-   
+      <ng-template ngFor let-room [ngForOf]="RoomDetails" let-i="index" >
+       <br><br>   
         <li>
         Title: {{room.summary}}<br>
         Start Date: {{room.start_date}}<br>
-        Time: {{room.start_time}} to {{room.end_time}}  
-
+        Time: {{room.start_time}} to {{room.end_time}} 
         </li>
+  
+        <div>
+       
+    
+      </div>
       </ng-template>
     </ul>
   </div>
