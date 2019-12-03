@@ -1,9 +1,9 @@
-import { Component, OnInit,Input,OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DetailsService } from './DetailsService';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 
 @Component({
@@ -11,150 +11,156 @@ import {Pipe, PipeTransform} from '@angular/core';
   templateUrl: './displayer.component.html',
   styleUrls: ['./displayer.component.css']
 })
-export class DisplayerComponent implements OnInit{
-  summary:  string;
-  start_time:  String;
+export class DisplayerComponent implements OnInit {
+  summary: string;
+  start_time: String;
   end_time: String;
-  start_date:  String;
- selectedRoom: Location;
- roomSelected: any[];
- selectedtime:any;
+  start_date: String;
+  selectedRoom: Location;
+  title:string;
+  // roomSelected: any[];
+  // selectedtime: any;
+public runtime=0;
+  public now: Date = new Date();
+  public TodayTime = this.now.getTime();
+  public startdates = []
+  public MeetingEndTime: Date;
 
-
- public now: Date = new Date();
- public TodayTime= this.now.getTime();
- public startdates=[]
-public MeetingEndTime: Date;
-
- @Input() Room;
+  @Input() Room;
   public Details;
-
   public RoomDetails;
-  checker:boolean=false;
+
+
 
   constructor(private _myService: DetailsService) {
     // this.SelectedLocations();
-   }
-  onSubmit()  {
+  }
+  onSubmit() {
+    setInterval(() => {
+      this.now = new Date();
+    }, 1);
     // console.log(this.bookingModel);
-    this.selectedRoom=location;
+    this.selectedRoom = location;
 
   }
-  
+
   ngOnInit() {
     this.getuniqueLocations();
+   
+   
   }
 
-  getUniqueValues(details){
+  getUniqueValues(details) {
     const locations = []
-    // this.startdates=[]
-   
-    for (var i in details){
-      
-         locations.push(details[i].location);
-      //   var x= details[i].startdate;
-      // this.MeetingEndTime =  new Date(x);
-        // this.startdates.push(this.MeetingEndTime.getTime());
-       for (var j in locations){
+    for (var i in details) {
+      locations.push(details[i].location);
+      for (var j in locations) {
         locations.sort();
-
-       }
+      }
     }
     return new Set(locations)
   }
 
-    //method called OnInit
-    getuniqueLocations() {
-      this._myService.getDetails().subscribe(
-         //read data and assign to public variable students
-         data => { this.Details = this.getUniqueValues(data)},
-         err => console.error(err),
-         () => console.log('finished loading')
-       );
-   
-      }
-
-      SelectedLocations()
-      {
-        this._myService.SelectedInfo(this.selectedRoom).subscribe(
-        //read data and assign to public variable students
-        data => {console.log(data); this.RoomDetails =this.getRecentData(data);   
-                 
-        },
-        err => console.error(err),
-        () => console.log('finished loading')
-      );
-     }
-
-     
-
-
-getRecentData(details)
-{
-  const recentData = []
-  for (var i in details){
-            var Today = new Date();
-        var TodayTime= Today.getTime();
-      var x= details[i].startdate;
-    var Meetingstart =  new Date(x).getTime();
-if (TodayTime<Meetingstart)
-{
-   recentData.push(details[i]);
-   
-   recentData.sort((a, b) => (a.startdate > b.startdate) ? 1 : -1)
-} 
-  }
-
-
-
-  return new Set(recentData)
-
-}
   //method called OnInit
-  getDetails() {
-   
+  getuniqueLocations() {
     this._myService.getDetails().subscribe(
       //read data and assign to public variable students
-      data => { this.Details=data;
-      //   var filteredData = [];
+      data => { this.Details = this.getUniqueValues(data) },
+      err => console.error(err),
+      () => console.log('finished loading')
+    );
 
-      //   for (let i = 0; i <length; i++) {
-      //   const sdate= new Date(data[i].startdate);
-      //   const edate= new Date(data[i].enddate)
-      //   var MeetingstartTime = sdate.getTime();
-      //   var MeetingendTime = edate.getTime();
-      //   var Today = new Date();
-      //   var TodayTime= Today.getTime();
-     
-      //   //Testing - Replace MeetingEndTime with TestTime in the if condition and change the value of td2 to the test value 
-      //   if (TodayTime < MeetingstartTime )
-      //   {
-        
-      //     filteredData.push(data[i]);
-      //     console.log("Meeting End Time"+" "+MeetingstartTime);
-      //     console.log( "Today Time"+" "+TodayTime);
-      //   }   
-      // }
-    },
+  }
+
+  SelectedLocations() {
+    this._myService.SelectedInfo(this.selectedRoom).subscribe(
+      //read data and assign to public variable students
+      data => {
+      this.RoomDetails = this.getRecentData(data);
+      this.Displayer(data);
+      console.log(this.runtime);
+      },
       err => console.error(err),
       () => console.log('finished loading')
     );
   }
 
-   onSelect(Room): void {
-    console.log(Room)
-    this.selectedRoom=Room;
-    this.SelectedLocations();
-    // this.upcomingMeetings();
-    }
+  getRecentData(details) {
+    const recentData = []
+    for (var i in details) {
+      var Today = new Date();
+      var TodayTime = Today.getTime();
+      var x = details[i].startdate;
+      var Meetingstart = new Date(x).getTime();
+      if (TodayTime < Meetingstart) {
+        recentData.push(details[i]);
 
-  getTimeStamp(s){
-    return new Date(s).getTime();
+        recentData.sort((a, b) => (a.startdate > b.startdate) ? 1 : -1);
+      }
+    }
+    return new Set(recentData);
+  }
+ 
+  Displayer(details)
+  {
+    
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 30000);
+   for (var i in details)
+   {
+ 
+    this.runtime=details[i].endtime-this.now.getTime();
+    this.title=details[i].summary;
+  
+   break;
+   }
+  
+ 
+
   }
 
+  onSelect(Room): void {
+    this.selectedRoom = Room;
+    this.SelectedLocations();
+    // this.upcomingMeetings();
+  }
+
+  getTimeStamp(s) {
+    return new Date(s).getTime();
+  }
+ //method called OnInit
+ getDetails() {
+  this._myService.getDetails().subscribe(
+    data => { console.log(data);
+    this.Details = data;},
+    err => console.error(err),
+    () => console.log('finished loading')
+  );
+}
 
 }
 
+
+        //   var filteredData = [];
+
+        //   for (let i = 0; i <length; i++) {
+        //   const sdate= new Date(data[i].startdate);
+        //   const edate= new Date(data[i].enddate)
+        //   var MeetingstartTime = sdate.getTime();
+        //   var MeetingendTime = edate.getTime();
+        //   var Today = new Date();
+        //   var TodayTime= Today.getTime();
+
+        //   //Testing - Replace MeetingEndTime with TestTime in the if condition and change the value of td2 to the test value 
+        //   if (TodayTime < MeetingstartTime )
+        //   {
+
+        //     filteredData.push(data[i]);
+        //     console.log("Meeting End Time"+" "+MeetingstartTime);
+        //     console.log( "Today Time"+" "+TodayTime);
+        //   }   
+        // }
 
 //   listchecker(){
 //     this.TodayTime= this.now.getTime();
